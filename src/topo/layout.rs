@@ -21,11 +21,12 @@ use std::vec;
 
 use super::placer::Placer;
 
+#[derive(Clone)]
 pub struct VisualGraph {
     // Holds all of the elements in the graph.
-    nodes: Vec<Element>,
+    pub nodes: Vec<Element>,
     // The arrows and the list of elements that they visits.
-    edges: Vec<(Arrow, Vec<NodeHandle>)>,
+    pub edges: Vec<(Arrow, Vec<NodeHandle>)>,
     // Contains a list of self-edges. We use this as a temporary storage during
     // lowering. This list should be removes by the time we start the layout
     // process.
