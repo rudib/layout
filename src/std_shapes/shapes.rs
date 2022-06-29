@@ -130,10 +130,11 @@ pub struct Arrow {
     pub look: StyleAttr,
     pub src_port: Option<String>,
     pub dst_port: Option<String>,
+    pub id: Option<usize>
 }
 
-impl Arrow {
-    pub fn default() -> Arrow {
+impl Default for Arrow {
+    fn default() -> Arrow {
         Arrow {
             start: LineEndKind::None,
             end: LineEndKind::Arrow,
@@ -142,9 +143,12 @@ impl Arrow {
             look: StyleAttr::simple(),
             src_port: Option::None,
             dst_port: Option::None,
+            id: None
         }
     }
+}
 
+impl Arrow {
     pub fn reverse(&self) -> Arrow {
         Arrow {
             start: self.end,
@@ -154,6 +158,7 @@ impl Arrow {
             look: self.look.clone(),
             src_port: self.dst_port.clone(),
             dst_port: self.src_port.clone(),
+            ..Default::default()
         }
     }
 
@@ -174,6 +179,7 @@ impl Arrow {
             look: look.clone(),
             src_port: src_port.clone(),
             dst_port: dst_port.clone(),
+            ..Default::default()
         }
     }
 
